@@ -1,12 +1,12 @@
 # KateRMarkdown
 How to create beautiful RMarkdown documents, and make sure that they are as full of cat images as they can possibly be.  
 
-This vignette was prepared by @FMSabatini, for the Course [*Getting started with R Markdown*](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html) within the [TreeDi Qualification Programme](https://www.idiv.de/en/web/treedi/qualification_programme.html) at the [German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig](https://www.idiv.de/en/index.html) and [Martin-Luther University, Halle-Wittenberg](https://www.botanik.uni-halle.de/).
+This vignette was prepared by @fmsabatini, for the Course [*Getting started with R Markdown*](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html) within the [TreeDi Qualification Programme](https://www.idiv.de/en/web/treedi/qualification_programme.html) at the [German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig](https://www.idiv.de/en/index.html) and [Martin-Luther University, Halle-Wittenberg](https://www.botanik.uni-halle.de/).
 
 
 
 
-[## Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
+##[Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
 
 *Date*  
 10 March 2021 (Germany: 09:00 - 12:00 AM; China: 16:00 - 19:00 PM)  
