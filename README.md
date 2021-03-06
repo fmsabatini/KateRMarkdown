@@ -5,28 +5,27 @@ This vignette was prepared by @fmsabatini, for the Course [*Getting started with
 
 
 
+## [Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
 
-##[Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
-
-*Date*  
+**Date**  
 10 March 2021 (Germany: 09:00 - 12:00 AM; China: 16:00 - 19:00 PM)  
 
-*Location*  
+**Location**  
 online via MLUConf  
 
-*Credit points*  
+**Credit points**  
 0.25 CP  
 
-*Course Language*  
+**Course Language**  
 English  
 
-*Target Group*  
+**Target Group**  
 Doctoral Researchers  
 
-*Contents*
+**Contents**
 R Markdown is an authoring framework for data science that saves and executes code and turns analysis in R into high-quality documents, reports, dashboards and many other formats. With R markdown you can embed code directly into text so results and figures get added to our reports automatically. In this course, you will learn how to use R Markdown to create dynamic and reproducible reports that show the underlying code and the output from your analysis (e.g. figures and tables) and provide text explanations along with your code and output.  
 
-*Lecturer*  
+**Lecturer**  
 Dr. Francesco Maria Sabatini  
 
 Francesco is a postdoctoral researcher at MLU/iDiv. As coordinator of sPlot - The Global Vegetation Database, he has a profound expertise in big data infrastructure and in compiling and analysis of global datasets.
