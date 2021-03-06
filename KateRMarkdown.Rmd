@@ -3,13 +3,20 @@ title: "KateRMarkdown"
 author: "Francesco Maria Sabatini"
 date: "05/03/2021"
 output:
+  html_document:
+    keep_md: false
+    number_sections: true
+    toc: true
+    toc_depth: 2
   pdf_document:
     dev: png
     number_sections: true
-  html_document:
-    keep_md: false
+    toc: true
+    toc_depth: 2
 urlcolor: blue
 ---
+
+\newpage
 
 # Why Am I here?
 ```{r, echo=F, warning=F, fig.align="center", fig.height=3, dpi=300, fig.cap="A Non Reproducible workflow - 'https://www.youtube.com/watch?v=s3JldKoA0zw\\&t=5s'"}
@@ -189,7 +196,7 @@ Renders as:
 <center> 
 ![Black Footed Cat](figures/Black_Footed_Cat.jpg){height=300px}
 </center> 
-\newline
+  
 
 Create numbered lists of cats (don't forget to leave an empty line before starting the list). E.g.,    
 My favourite wildcats:  
@@ -323,7 +330,6 @@ Some useful figure related arguments here:
 `{r fig.align="center"}` - Horizontal alignment of your graph  
 `{r dpi=150}` - Change resolution of output image (mostly relevant for pdf)  
 
-\pagebreak
 You can also combine them altogether in a single line. For instance, if I rerun the chunk above specifying:  
 `{r, fig.height=3, fig.width=4, fig.cap="Weight (kg) of the 10 largest wild cats",`   `fig.align="center", dpi=150, echo=F}`  
 ```{r, fig.height=3, fig.width=4, fig.cap="Weight (kg) of the 10 largest wild cats", fig.align="center", dpi=150, echo=F}
@@ -355,13 +361,18 @@ knitr::kable(big.cats, caption="The largest cats!") %>%
 ```
 
 
-```{r, if (knitr::is_html_output()), warning=F, message=F, echo=F}
+```{r, warning=F, message=F, echo=F}
 library(kableExtra)
-knitr::kable(big.cats, caption="The largest cats!") %>%
+mytable <- knitr::kable(big.cats, caption="The largest cats!") %>%
   kable_styling(
     bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
     position = "center")
 ```
+
+`r if (!knitr::is_html_output()) '<!--'`
+`r mytable`
+`r if (!knitr::is_html_output()) '-->'`
+
 
 I won't look good that good on a pdf, but on an html report it's just as good as it can possibly be.  
 
@@ -433,7 +444,7 @@ ggdraw() +
 ## PDFs and paper templates
 I know. You you can't wait to produce your fantastic pdf reports, and write your next paper directly in R.  
 Good news - is possible - There are many templates out there, and you just have to reach out to them. See for instance: https://t.co/uJBqWER5h6?amp=1  
-**Yes, these templates will format bibliographic reference as well**
+**Yes, there are templates which will also format bibliographic reference as requested by different journals**
 
 Bad news - you'll need to setup your machine first, and it might be tricky sometimes. You find some guidance at: [https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).   
 
