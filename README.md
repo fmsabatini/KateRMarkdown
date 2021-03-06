@@ -23,7 +23,7 @@ English
 **Target Group**  
 Doctoral Researchers  
 
-**Contents**
+**Contents**  
 R Markdown is an authoring framework for data science that saves and executes code and turns analysis in R into high-quality documents, reports, dashboards and many other formats. With R markdown you can embed code directly into text so results and figures get added to our reports automatically. In this course, you will learn how to use R Markdown to create dynamic and reproducible reports that show the underlying code and the output from your analysis (e.g. figures and tables) and provide text explanations along with your code and output.  
 
 **Lecturer**  
