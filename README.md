@@ -3,7 +3,8 @@ How to create beautiful RMarkdown documents, and make sure that they are as full
 
 This vignette was prepared by @fmsabatini, for the Course [*Getting started with R Markdown*](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html) within the [TreeDi Qualification Programme](https://www.idiv.de/en/web/treedi/qualification_programme.html) at the [German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig](https://www.idiv.de/en/index.html) and [Martin-Luther University, Halle-Wittenberg](https://www.botanik.uni-halle.de/).
 
-
+[Vignette - html version](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/KateRMarkdown.html)  
+[Vignette - pdf version](https://github.com/fmsabatini/KateRMarkdown/blob/main/KateRMarkdown.pdf)
 
 ## [Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
 
