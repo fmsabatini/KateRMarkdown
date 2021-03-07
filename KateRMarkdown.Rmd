@@ -1,15 +1,15 @@
 ---
 title: "KateRMarkdown"
 author: "Francesco Maria Sabatini"
-date: "05/03/2021"
+date: "10/03/2021"
 output:
-  html_document:
-    keep_md: false
+  pdf_document:
+    dev: png
     number_sections: true
     toc: true
     toc_depth: 2
-  pdf_document:
-    dev: png
+  html_document:
+    keep_md: false
     number_sections: true
     toc: true
     toc_depth: 2
@@ -18,7 +18,7 @@ urlcolor: blue
 
 \newpage
 
-# Why Am I here?
+# Why are we here?
 ```{r, echo=F, warning=F, fig.align="center", fig.height=3, dpi=300, fig.cap="A Non Reproducible workflow - 'https://www.youtube.com/watch?v=s3JldKoA0zw\\&t=5s'"}
 library(cowplot)
 ggdraw() +
@@ -27,7 +27,7 @@ ggdraw() +
 
 \newpage
 # Introducing RMarkdown
-That's why we are playing around wit `RMarkdown` today.  
+That's why we are playing around with `RMarkdown` today.  
 Clearly, there's no best way of doing so than throwing in a bunch of *Cats*.
 ```{r, echo=F, warning=F, fig.align="center", fig.height=1.5, fig.width=3, dpi=200}
 ### Hidden  code to create the KateR sticker
@@ -265,6 +265,14 @@ cat("`` ``` ``")
 ```
 \newline
 
+It will render as:
+```{r}
+4+4
+```
+
+
+
+
 Let's make some practice. We need to import some cat-related data, first. 
 ```{r}
 library(tidyverse)
@@ -296,8 +304,8 @@ cat("`` It weights up to `r big.cats[1,'Maximum.weight.kg']`. ``")
 
 
 Renders as:  
-The cat having the highest weight is `r big.cats[1,"Common.name"]`.  
-It weights up to `r big.cats[1,"Maximum.weight.kg"]`.  
+The cat having the highest weight is `r big.cats$Common.name[1]`.  
+It weights up to `r big.cats$Maximum.weight.kg[1]`.  
 \newline
 
 
@@ -313,7 +321,11 @@ A couple of useful arguments when you start your chunk:
 Let's make a graph to see the differences in cat size more easily.
 ```{r}
 # create spider plot
+#remotes::install_github("hilaryparker/cats") #if needed
+library(cats)
+
 ggcats <- ggplot(data=big.cats) + 
+  cats::add_cat() + ## add a random cat image on the background of the graph, if you fancy
   geom_segment(aes(y=Common.name, yend=Common.name, x=Weight.min, xend=Weight.max), 
                arrow = arrow(length = unit(5, "points"), 
                              ends="both", type = "closed", angle = 40)) + 
@@ -376,6 +388,7 @@ mytable <- knitr::kable(big.cats, caption="The largest cats!") %>%
 
 I won't look good that good on a pdf, but on an html report it's just as good as it can possibly be.  
 
+\newpage
 # Slightly more advanced stuff
 ## Long computing times
 Whenever you knit your `RMarkdown` report, R will re-run all the code contained in your .Rmd script. It's therefore not the best idea to include a chunk of code taking 3 hours to run. If you do so, even just correcting a typo in the text will require you to wait three hours before the corrected version of your report is rendered!  
@@ -443,16 +456,61 @@ ggdraw() +
 
 ## PDFs and paper templates
 I know. You you can't wait to produce your fantastic pdf reports, and write your next paper directly in R.  
-Good news - is possible - There are many templates out there, and you just have to reach out to them. See for instance: https://t.co/uJBqWER5h6?amp=1  
+Good news - is possible - There are many templates out there, and you just have to fetch them. See for instance: https://t.co/uJBqWER5h6?amp=1  
 **Yes, there are templates which will also format bibliographic reference as requested by different journals**
 
 Bad news - you'll need to setup your machine first, and it might be tricky sometimes. You find some guidance at: [https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).   
+
 
 # Resources
 Many good resources out there. I only cite two:  
 
 1) [Bookdown](https://bookdown.org/yihui/rmarkdown/) - https://bookdown.org/yihui/rmarkdown/  
-2) [RMarkdown Cookboo](https://bookdown.org/yihui/rmarkdown-cookbook/) - https://bookdown.org/yihui/rmarkdown-cookbook/  
+2) [RMarkdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) - https://bookdown.org/yihui/rmarkdown-cookbook/  
+
+
+\newpage
+# Your Turn!
+Now it's up to you to create a beautiful `RMarkdown` report full of cats. The more \\ the cuter the cats, the better. 
+\newline
+
+Pick up a cute, wild species of cat and:  
+
+1) Set up a new `RMarkdown` project  
+2) Report a fun fact about your cat species as text in your report  
+3) Embed a (copyright free) picture of that cat from the internet  
+4) Download some data on that cat from [gbif](https://www.gbif.org/) using the `rgbif` package (help code below)  
+5) Show the data in a table
+6) Create one graph based on that data (for instance a bar chart of the species occurrences across countries or sampling years, or a map of the coordinates). Any graphs work     
+7) Knit your project to html
+8) Upload your html report at: [https://portal.idiv.de/nextcloud/index.php/s/ZK7XWMoAdXFbffQ](https://portal.idiv.de/nextcloud/index.php/s/ZK7XWMoAdXFbffQ). I will publish the nicest reports in the [KateRMarkdown](https://github.com/fmsabatini/KateRMarkdown) GitHub project.  
+
+*Help code to download data from [gbif](https://www.gbif.org/)*
+```{r, eval=F}
+library(tidyverse)
+library(rgbif)
+myspecies <- "Caracal caracal"  ## example
+get.speciesKey <- function(x){name_backbone(x)$speciesKey} #get GBIF species key
+key <- get.speciesKey(myspecies)
+# extract the first n occurrences from rgbif
+get.occurrences <- function(x, n=100){occ_search(taxonKey=x, return="data", 
+                                             limit=n, hasCoordinate = T)}
+# clean data
+dat <- lapply(key, get.occurrences, n=100)[[1]]
+dat <- dat$data  %>%  
+  dplyr::select(species, year:day, country, stateProvince, 
+                decimalLongitude, decimalLatitude)#, everything())
+```
+
+\newpage
+# sessionInfo()
+```{r}
+sessionInfo()
+```
+
+
+
+
 
 
 
