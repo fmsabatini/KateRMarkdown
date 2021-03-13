@@ -7,7 +7,7 @@ reporting some fun facts about the chosen species, adding an image, download som
 and create a graph based on the data.
 
 
-1) [The Cheetah - *Acinonyx jubatus* by Geord](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/assignment_GH.html)
+1) [The Cheetah - *Acinonyx jubatus* by Georg](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/assignment_GH.html)
 2) [Big Cats - by Maria](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/Big-cats.html)
 3) [Small Cats of Brazil - by Amanda](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/Cat-report.html)
 4) [Leopard cat - *Prionailurus bengalensis* by Andrea](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/Cute_cats_Andrea.html)
