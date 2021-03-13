@@ -13,5 +13,5 @@ and create a graph based on the data.
 4) [Leopard cat - *Prionailurus bengalensis* by Andrea](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/Cute_cats_Andrea.html)
 5) [Geoffroy's cat - *Leopardus geoffroyi* by Franesco](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/Geoffroys_cat.html)
 6) [The couguar - *Puma concolor* by PA](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/Practice-presentation.html)
-7) [The deadliest cat in the World - Felis nigripes by Lina](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/The-deadliest-cat-in-the-world.html)
+7) [The deadliest cat in the World - *Felis nigripes* by Lina](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/Gallery/The-deadliest-cat-in-the-world.html)
 
