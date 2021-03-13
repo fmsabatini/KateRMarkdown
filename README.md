@@ -9,6 +9,8 @@ This vignette was prepared by [@fmsabatini](https://github.com/fmsabatini/), for
 [Vignette - html version](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/KateRMarkdown.html)  
 [Vignette - pdf version](https://github.com/fmsabatini/KateRMarkdown/blob/main/KateRMarkdown.pdf)
 
+Go to the **[Gallery](https://github.com/fmsabatini/KateRMarkdown/tree/main/Students_report)** of Student's projects
+
 ## [Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
 
 **Date**  
