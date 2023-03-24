@@ -1,13 +1,8 @@
 ---
 title: "KateRMarkdown"
 author: "Francesco Maria Sabatini"
-date: "10/03/2021"
+date: "24/03/2023"
 output:
-  pdf_document:
-    dev: png
-    number_sections: true
-    toc: true
-    toc_depth: 2
   html_document:
     keep_md: false
     number_sections: true
@@ -19,11 +14,8 @@ urlcolor: blue
 \newpage
 
 # Why are we here?
-```{r, echo=F, warning=F, fig.align="center", fig.height=3, dpi=300, fig.cap="A Non Reproducible workflow - 'https://www.youtube.com/watch?v=s3JldKoA0zw\\&t=5s'"}
-library(cowplot)
-ggdraw() +
-  draw_image("figures/NonReproducibleWorkflow.PNG")
-```
+[![A Non Reproducible workflow](figures/NonReproducibleWorkflow.PNG)](https://www.youtube.com/watch?v=s3JldKoA0zw\\&t=5s)
+
 
 \newpage
 # Introducing RMarkdown
@@ -32,6 +24,7 @@ Clearly, there's no best way of doing so than throwing in a bunch of *Cats*.
 ```{r, echo=F, warning=F, fig.align="center", fig.height=1.5, fig.width=3, dpi=200}
 ### Hidden  code to create the KateR sticker
 library(hexSticker)
+library(cowplot)
 imgurl <- "http://raw.githubusercontent.com/GuangchuangYu/hexSticker/master/inst/figures/cat.png"
 sticker(imgurl, package="KateRMd", p_size=15, s_x=1, s_y=.75, s_width=.6,
         filename="figures/KateRMD_sticker.png")
@@ -184,7 +177,7 @@ Renders as:
 [Eurasian Lynx - Wikipedia](https://en.wikipedia.org/wiki/Eurasian_lynx) 
 \newline
 
-Embed cat from url/file:    
+Embed a cat image from url/file:    
 `<center>`
 `![Black Footed Cat](https://en.wikipedia.org/wiki/Black-footed_cat#/media/File:Black_Footed_Cat.jpg){height=300px}`
 `</center> `
@@ -274,18 +267,22 @@ It will render as:
 
 
 Let's make some practice. We need to import some cat-related data, first. 
-```{r}
-library(tidyverse)
+```{r }
 big.cats <- read.table("data/Wikipedia_LargestCats.txt", header = T, sep="\t")
 big.cats
 ```
 This data.frame contains the weight range, and the maximum observed weights and lengths of the ten largest wildcats. (Source: [Wikipedia](https://en.wikipedia.org/wiki/List_of_largest_cats)).  
 \newline
 
-When knitting this code, we are getting a bunch of messages related to the tidyverse package. Not so nice in a report. You can deactivated them by opening your chunk with `{r, warning=F, message=F}`.
+We then load `tidyverse` a set of powerful packages for data manipulation and visualization.
+```{r}
+library(tidyverse)
+```
+
+When loading tidyverse, we are getting a bunch of warning messages. Not so nice in a report. You can deactivated them by opening your chunk with `{r, warning=F, message=F}`.
 \newline
 
-Let's do some real R code. In the chunk below, we split the weight range field into min and max using some fancy `dplyr` code.
+Let's do some real R code. In the chunk below, we split the weight range field into min and max using some fancy `dplyr` code, from `tidyverse`.
 ```{r}
 big.cats <- big.cats %>% 
   separate(Weight.range.kg, into=c("Weight.min", "Weight.max"), sep = "-", remove = T) %>%
@@ -294,7 +291,7 @@ big.cats <- big.cats %>%
   mutate(Common.name=factor(Common.name, levels=big.cats$Common.name))
 ```
 
-Maybe in your report you want to automatically include a value which you calculate in your r script. This can be done with some *inline code*. This can be done enclosing some code by backticks and specifying the code is in r. For instnce the code:    
+Maybe in your report you want to automatically include a value which you calculate in your r script. This can be done with some *inline code*. This can be done enclosing some code by backticks and specifying the code is in r. For instance the code:    
 ```{r, results='asis', echo=FALSE}
 cat("`` The cat having the highest weight is `r big.cats[1,'Common.name']`. ``")
 ```
@@ -318,12 +315,17 @@ A couple of useful arguments when you start your chunk:
 ### Playing around with Pictures
 **THE THING** about `RMarkdown` is that it allows embedding graphs directly to your document. Input changed? Just re-knit and you'll have all your graphs updated. It's as easy as simply running a chunk of code.  
 
-Let's make a graph to see the differences in cat size more easily.
-```{r}
-# create spider plot
-#remotes::install_github("hilaryparker/cats") #if needed
-library(cats)
 
+Let's make a graph to see the differences in cat size more easily, through a forest plot.
+We install the fantastically useless package `cat` first. It's not on CRAN, therefore we need also the package `remotes`. All it does is randomly selecting a cat image to be used as background of our ggplot graphs. 
+```{r, eval=F}
+install.packages("remotes")
+remotes::install_github("hilaryparker/cats") 
+```
+
+We can then load the package and use it to get our much needed random cat image
+```{r}
+library(cats)
 ggcats <- ggplot(data=big.cats) + 
   cats::add_cat() + ## add a random cat image on the background of the graph, if you fancy
   geom_segment(aes(y=Common.name, yend=Common.name, x=Weight.min, xend=Weight.max), 
@@ -387,6 +389,40 @@ mytable <- knitr::kable(big.cats, caption="The largest cats!") %>%
 
 
 I won't look good that good on a pdf, but on an html report it's just as good as it can possibly be.  
+
+### Playing around with References
+
+Yes, it is possible to add references to your markdown document. There are multiple ways for doing it. [You can even link your Zotero library](https://www.r-bloggers.com/2019/02/bibliography-with-knitr-cite-your-references-and-packages/), if you wish. However, the easiest is probably to use the `knitcitations` package. We load it first.  
+
+```{r, echo=F, warning=F}
+library(knitcitations)
+```
+
+```{r, eval=F}
+install.packages("knitcitations")
+library(knitcitations)
+```
+
+
+We can now cite online any work simply by referring to its doi. How?
+
+The text:  
+```{r, echo=F, comment=""}
+cat("Cats are not necessarily animals `r citep('10.1007/s10670-022-00588-w')`. But if they are, they should be left free to roam `r citep('10.1007/s12136-019-00408-x')`")
+```
+will render as:  
+
+<br>
+Cats are not necessarily animals `r citep('10.1007/s10670-022-00588-w')`.But if they are, they should be left free to roam `r citep('10.1007/s12136-019-00408-x')`
+
+<br>
+To create a bibliography, we need to use the respective command.
+```{r}
+bibliography()
+```
+...and yes, you can also change the format style, but it is a bit laboursome and we don't deal with this aspect here.
+
+
 
 \newpage
 # Slightly more advanced stuff
@@ -483,10 +519,10 @@ Pick up a cute, wild species of cat and:
 5) Show the data in a table
 6) Create one graph based on that data (for instance a bar chart of the species occurrences across countries or sampling years, or a map of the coordinates). Any graphs work     
 7) Knit your project to html
-8) Upload your html report at: [https://portal.idiv.de/nextcloud/index.php/s/ZK7XWMoAdXFbffQ](https://portal.idiv.de/nextcloud/index.php/s/ZK7XWMoAdXFbffQ). I will publish the nicest reports in the [KateRMarkdown](https://github.com/fmsabatini/KateRMarkdown) GitHub project.  
+8) Upload your html report at: [https://portal.idiv.de/nextcloud/index.php/s/ZK7XWMoAdXFbffQ](https://portal.idiv.de/nextcloud/index.php/s/ZK7XWMoAdXFbffQ). I will publish the nicest reports in the [KateRMarkdown](https://github.com/fmsabatini/KateRMarkdown) gallery.  
 
 *Help code to download data from [gbif](https://www.gbif.org/)*
-```{r, eval=F}
+```{r, eval=F, warning=F}
 library(tidyverse)
 library(rgbif)
 myspecies <- "Caracal caracal"  ## example
