@@ -4,23 +4,19 @@ How to create beautiful RMarkdown documents, and make sure that they are as full
   <img width="460" height="300" src="https://github.com/fmsabatini/KateRMarkdown/blob/main/figures/MindBlowing.jpg">
 </p>
 
-This vignette was prepared by [@fmsabatini](https://github.com/fmsabatini/), for the Course [*Getting started with R Markdown*](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html) within the [TreeDi Qualification Programme](https://www.idiv.de/en/web/treedi/qualification_programme.html) at the [German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig](https://www.idiv.de/en/index.html) and [Martin-Luther University, Halle-Wittenberg](https://www.botanik.uni-halle.de/).
+This vignette was prepared by [@fmsabatini](https://github.com/fmsabatini/), originally for the Course [*Getting started with R Markdown*](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html) within the [TreeDi Qualification Programme](https://www.idiv.de/en/web/treedi/qualification_programme.html) at the German Centre for Integrative Biodiversity Research (iDiv) Halle-Jena-Leipzig. It was then updated to be offered to the PhD students of the [CONFOBI training network](https://confobi.uni-freiburg.de/en) of the University of Freiburg, within the workshop *A reproducible workflow in your research practice - A gift to your future self*
 
 [Vignette - html version](https://htmlpreview.github.io/?https://github.com/fmsabatini/KateRMarkdown/blob/main/KateRMarkdown.html)  
-[Vignette - pdf version](https://github.com/fmsabatini/KateRMarkdown/blob/main/KateRMarkdown.pdf)
 
-Go to the **[Gallery](https://github.com/fmsabatini/KateRMarkdown/tree/main/Students_report)** of Student's projects
+Go to the **[Gallery](Gallery/README.md)** to see the Students projects
 
-## [Getting started with R Markdown](https://www.idiv.de/en/web/treedi/qualification-programme/2021-getting-started-with-r-markdown.html)  
+## Getting started with R Markdown  
 
 **Date**  
-10 March 2021 (Germany: 09:00 - 12:00 AM; China: 16:00 - 19:00 PM)  
+Thursday March 30, 2023 (10:00 - 12:00 AM)  
 
 **Location**  
-online via MLUConf  
-
-**Credit points**  
-0.25 CP  
+Room 200.
 
 **Course Language**  
 English  
@@ -33,5 +29,4 @@ R Markdown is an authoring framework for data science that saves and executes co
 
 **Lecturer**  
 Dr. Francesco Maria Sabatini  
-
-Francesco is a postdoctoral researcher at MLU/iDiv. As coordinator of sPlot - The Global Vegetation Database, he has a profound expertise in big data infrastructure and in compiling and analysis of global datasets.
+Assistant Professor at University of Bologna, Italy. 
