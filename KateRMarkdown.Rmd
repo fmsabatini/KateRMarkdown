@@ -91,7 +91,7 @@ The good news is that your RStudio IDE has already a Pandoc installation embedde
 # Can we look at cats now?
 Almost. Fire up your RStudio and install `RMarkdown` first.
 ```{r, eval=F}
-install.packages("RMardown")
+install.packages("rmarkdown")
 ```
 
 Time to start your first `RMarkdown` document. 
