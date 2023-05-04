@@ -1,0 +1,128 @@
+---
+title: "KateRMarkdown - Session"
+author: "Francesco Maria Sabatini"
+date: "10/03/2021"
+output: html_document
+---
+
+
+# This will be a title
+This section is about.  
+<br>
+
+_Make text italics_ 
+**This is one is bold**
+***Both italics AND bold***
+<br>
+
+To add [Lynx](https://en.wikipedia.org/wiki/Eurasian_lynx)
+<br>
+Add a picture from an URL
+<br>
+<center>
+![Lynx](https://upload.wikimedia.org/wikipedia/commons/6/63/Lynx_lynx2.jpg){height=300px}
+</center>
+
+![Lynx](figures/Black_Footed_Cat.jpg){height=300px}
+
+
+
+I want to make a list of object (don't forget to leave an e)  
+
+* Object 1
+* Object 2
+* Object 3
+  - Subelement a
+  - Subelement b
+
+
+
+
+Ordered list of wild cats  
+
+1. Lynx
+2. Jaguar
+3. Tiger
+
+
+
+
+## This Section is about adding code
+This subsetction will contain cats.
+
+You can add options to your chunks of code, inside the curly bracket.
+
+```{r, warning=F, message=F}
+library(tidyverse)
+4+4
+
+big.cats <- read.table("data/Wikipedia_LargestCats.txt", header = T, sep="\t")
+big.cats
+
+
+```
+
+The table illustrates the size and weight of the 10 largest cats in the world. The record is `r big.cats$Common.name[which.max(big.cats$Maximum.length.m)]`.  
+
+Some useful options for your code chunks
+
+{r, warning=F, message=F, echo=F, eval=F}
+```{r, eval=F}
+sessionInfo()
+```
+
+
+
+
+
+
+
+
+
+### Embed graphs in our report
+All the cats in the world
+```{r}
+big.cats <- big.cats %>% 
+  separate(Weight.range.kg, into=c("Weight.min", "Weight.max"), sep = "-", remove = T) %>%
+  mutate(Weight.min=as.numeric(Weight.min), 
+         Weight.max=as.numeric(Weight.max)) %>% 
+  mutate(Common.name=factor(Common.name, levels=big.cats$Common.name))
+```
+
+
+
+```{r, fig.height=3, fig.width=4, dpi=150, fig.cap="Comparison of the weight ranges of the largest cats in the world", fig.align="center", echo=F}
+library(cats)
+
+ggcats <- ggplot(data=big.cats) + 
+  cats::add_cat() + ## add a random cat image on the background of the graph, if you fancy
+  geom_segment(aes(y=Common.name, yend=Common.name, x=Weight.min, xend=Weight.max), 
+               arrow = arrow(length = unit(5, "points"), 
+                             ends="both", type = "closed", angle = 40)) + 
+  ylab(NULL) +
+  xlab(NULL) + 
+  theme(axis.text = element_text(size=14))
+ggcats
+```
+
+### Playing around with tables
+
+```{r}
+knitr::kable(head(big.cats[1:4,]), caption="The largest cats!")
+```
+
+
+```{r}
+##install.paclages("kableExtra")
+library(kableExtra)
+
+knitr::kable(big.cats, caption="The largest cats!") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+    position = "center")
+
+
+```
+
+
+
