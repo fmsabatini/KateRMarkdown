@@ -179,7 +179,7 @@ Renders as:
 
 Embed a cat image from url/file:    
 `<center>`
-`![Black Footed Cat](https://en.wikipedia.org/wiki/Black-footed_cat#/media/File:Black_Footed_Cat.jpg){height=300px}`
+`![Black Footed Cat](https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Black_Footed_Cat.jpg/800px-Black_Footed_Cat.jpg){height=300px}`
 `</center> `
 \newline
 
@@ -189,9 +189,12 @@ Renders as:
 <center> 
 ![Black Footed Cat](figures/Black_Footed_Cat.jpg){height=300px}
 </center> 
+Note how I used the html tags `<center>` & `</center>` to give additional graphical indications. This is one cool thing of RMarkdown: Not only it understands R and Markdown, but also html and (if Latex is installed on your machin) Latex!
+\newline
   
+--- 
 
-Create numbered lists of cats (don't forget to leave an empty line before starting the list). E.g.,    
+Let's see now how to create **numbered lists** of cats (don't forget to leave an empty line before starting the list). E.g.,    
 My favourite wildcats:  
 
 `1. Andean Cat (*Leopardus Jacobita*)`  
@@ -235,10 +238,16 @@ Renders as:
   + Fishing Cat
   + ...
 
+Sometimes, we want to add a comment to our RMarkdown, as a reminder of something we still need to develop, but that we don't want to show in our rendered report. This is the syntax:  
+`<!-- REMEMBER TO ADD THE INSTRUCTIONS TO MAKE COMMENTS -->`  
+But nothing will be shown!
+
 
 **Do Yourself a Favour** - and download the catsheet (=cheatsheet)  
 [Catsheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) - 
 https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+
+
 
 
 ### Playing around with Code
@@ -268,28 +277,20 @@ It will render as:
 
 Let's make some practice. We need to import some cat-related data, first. 
 ```{r }
-big.cats <- read.table("data/Wikipedia_LargestCats.txt", header = T, sep="\t")
+#download the file first:
+if(!file.exists("data")){dir.create("data")}
+download.file(url="https://raw.githubusercontent.com/fmsabatini/KateRMarkdown/main/data/Wikipedia_LargestCats.txt", 
+              destfile="data/Wikipedia_LargestCats.txt")
+
+
+# Load the table
+big.cats <- read.table("data/Wikipedia_LargestCats.txt", header = T)
+big.cats$Common.name <- factor(big.cats$Common.name, levels=big.cats$Common.name) #refactor - improves ordering later
 big.cats
 ```
 This data.frame contains the weight range, and the maximum observed weights and lengths of the ten largest wildcats. (Source: [Wikipedia](https://en.wikipedia.org/wiki/List_of_largest_cats)).  
 \newline
 
-We then load `tidyverse` a set of powerful packages for data manipulation and visualization.
-```{r}
-library(tidyverse)
-```
-
-When loading tidyverse, we are getting a bunch of warning messages. Not so nice in a report. You can deactivated them by opening your chunk with `{r, warning=F, message=F}`.
-\newline
-
-Let's do some real R code. In the chunk below, we split the weight range field into min and max using some fancy `dplyr` code, from `tidyverse`.
-```{r}
-big.cats <- big.cats %>% 
-  separate(Weight.range.kg, into=c("Weight.min", "Weight.max"), sep = "-", remove = T) %>%
-  mutate(Weight.min=as.numeric(Weight.min), 
-         Weight.max=as.numeric(Weight.max)) %>% 
-  mutate(Common.name=factor(Common.name, levels=big.cats$Common.name))
-```
 
 Maybe in your report you want to automatically include a value which you calculate in your r script. This can be done with some *inline code*. This can be done enclosing some code by backticks and specifying the code is in r. For instance the code:    
 ```{r, results='asis', echo=FALSE}
@@ -314,6 +315,14 @@ A couple of useful arguments when you start your chunk:
 
 ### Playing around with Pictures
 **THE THING** about `RMarkdown` is that it allows embedding graphs directly to your document. Input changed? Just re-knit and you'll have all your graphs updated. It's as easy as simply running a chunk of code.  
+
+First thing, we load `tidyverse` a set of powerful packages for data manipulation and visualization, which includes the package `ggplot2`
+```{r}
+library(tidyverse)
+```
+
+When loading tidyverse, we are getting a bunch of warning messages. Not so nice in a report. You can deactivated them by opening your chunk with `{r, warning=F, message=F}`.
+\newline
 
 
 Let's make a graph to see the differences in cat size more easily, through a forest plot.
@@ -488,6 +497,15 @@ knitr::knit("KateRMarkdown.Rmd")
 ggdraw() + 
   draw_image("figures/MindBlowing.jpg")
 ```
+
+Similarly, sometimes it can be convenient to knit a simple .R script to a pdf document (Warning! Latex installation needed!). The `knitr` package allows that, just follow the template code below:
+
+```{r, eval=F}
+library(knitr)
+knitr::stitch("myscript.R", 
+       template=system.file("misc", "knitr-template.Rnw",package="knitr"))
+```
+
 
 
 ## PDFs and paper templates
